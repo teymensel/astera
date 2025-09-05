@@ -147,4 +147,16 @@ class AppTheme {
       ),
     );
   }
+
+  // Tema değiştirme
+  static ThemeData getTheme(String themeName) {
+    switch (themeName) {
+      case 'light':
+        return lightTheme;
+      case 'dark':
+        return darkTheme;
+      default:
+        return lightTheme;
+    }
+  }
 }

@@ -8,6 +8,10 @@ import '../../widgets/home_widgets/anniversary_widget.dart';
 import '../../widgets/home_widgets/fight_counter_widget.dart';
 import '../../widgets/home_widgets/spotify_widget.dart';
 import '../../widgets/home_widgets/stats_widget.dart';
+import '../notes/notes_screen.dart';
+import '../todos/todos_screen.dart';
+import '../virtual_pet/virtual_pet_screen.dart';
+import '../settings/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,8 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = [
     const HomeTab(),
     const MusicTab(),
-    const StatsTab(),
-    const ProfileTab(),
+    const NotesTab(),
+    const TodosTab(),
+    const VirtualPetTab(),
   ];
 
   @override
@@ -50,12 +55,16 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Müzik',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.analytics),
-            label: 'İstatistikler',
+            icon: Icon(Icons.note),
+            label: 'Notlar',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
+            icon: Icon(Icons.task),
+            label: 'Görevler',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pets),
+            label: 'Pet',
           ),
         ],
       ),
@@ -133,8 +142,67 @@ class HomeTab extends StatelessWidget {
             const SizedBox(height: 16),
             
             const StatsWidget(),
+            
+            const SizedBox(height: 16),
+            
+            // Hızlı erişim butonları
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      // İstatistikler sayfasına git
+                      _showStatsDialog(context);
+                    },
+                    icon: const Icon(Icons.analytics),
+                    label: const Text('İstatistikler'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppTheme.secondaryColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      // Profil sayfasına git
+                      _showProfileDialog(context);
+                    },
+                    icon: const Icon(Icons.person),
+                    label: const Text('Profil'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppTheme.accentColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showStatsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('İstatistikler'),
+        content: const Text('Detaylı istatistikler yakında eklenecek.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Tamam'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showProfileDialog(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SettingsScreen(),
       ),
     );
   }
@@ -352,6 +420,33 @@ class MusicTab extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class NotesTab extends StatelessWidget {
+  const NotesTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const NotesScreen();
+  }
+}
+
+class TodosTab extends StatelessWidget {
+  const TodosTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const TodosScreen();
+  }
+}
+
+class VirtualPetTab extends StatelessWidget {
+  const VirtualPetTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const VirtualPetScreen();
   }
 }
 

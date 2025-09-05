@@ -1,5 +1,6 @@
 name: astera
 description: "Sevgililer için özel bir uygulama - Spotify entegrasyonu, sağlık takibi ve daha fazlası"
+
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -15,11 +16,11 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
-# of the product and file versions while build-number is used as the build suffix.
+# of the product and file versions while build-number is used as the revision.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -31,14 +32,21 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # UI & Navigation
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  
+  # Navigation
   go_router: ^14.2.0
+  
+  # UI
   flutter_svg: ^2.0.9
   lottie: ^3.1.0
   
   # State Management
   provider: ^6.1.1
+  
+  # Storage
   shared_preferences: ^2.2.2
   
   # Spotify Integration
@@ -48,10 +56,10 @@ dependencies:
   health: ^10.1.0
   flutter_blue: ^0.8.0
   
-  # WebSocket & Real-time
+  # Real-time
   web_socket_channel: ^2.4.0
   
-  # Push Notifications
+  # Notifications
   firebase_core: ^2.24.2
   firebase_messaging: ^14.7.10
   flutter_local_notifications: ^16.3.2
@@ -60,15 +68,15 @@ dependencies:
   intl: ^0.19.0
   timeago: ^3.6.1
   
-  # Image & Drawing
+  # Media
   image_picker: ^1.0.7
   signature: ^5.0.0
   
-  # HTTP & API
+  # HTTP
   http: ^1.2.0
   dio: ^5.4.0
   
-  # Storage
+  # Database
   sqflite: ^2.3.0
   path: ^1.8.3
   
@@ -76,6 +84,7 @@ dependencies:
   uuid: ^4.3.3
   permission_handler: ^11.2.0
   device_info_plus: ^9.1.2
+  package_info_plus: ^5.0.1
 
 dev_dependencies:
   flutter_test:
@@ -86,7 +95,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -114,7 +123,7 @@ flutter:
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
+  # list giving the asset path and other descriptors for the font. For
   # example:
   # fonts:
   #   - family: Schyler

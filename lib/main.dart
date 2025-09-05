@@ -4,6 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'providers/auth_provider.dart';
 import 'providers/couple_provider.dart';
 import 'providers/spotify_provider.dart';
+import 'providers/notes_provider.dart';
+import 'providers/todos_provider.dart';
+import 'providers/virtual_pet_provider.dart';
+import 'providers/theme_provider.dart';
 import 'screens/splash_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
@@ -26,15 +30,19 @@ class AsteraApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => CoupleProvider()),
         ChangeNotifierProvider(create: (_) => SpotifyProvider()),
+        ChangeNotifierProvider(create: (_) => NotesProvider()),
+        ChangeNotifierProvider(create: (_) => TodosProvider()),
+        ChangeNotifierProvider(create: (_) => VirtualPetProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
-      child: Consumer<AuthProvider>(
-        builder: (context, authProvider, child) {
+      child: Consumer2<AuthProvider, ThemeProvider>(
+        builder: (context, authProvider, themeProvider, child) {
           return MaterialApp.router(
             title: 'Astera',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
-            themeMode: ThemeMode.system,
+            themeMode: themeProvider.themeMode,
             routerConfig: AppRouter.router,
           );
         },
