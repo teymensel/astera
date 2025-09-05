@@ -54,6 +54,7 @@ dependencies:
   
   # Health & Fitness
   health: ^10.1.0
+  health_connect: ^0.1.0
   flutter_blue: ^0.8.0
   
   # Real-time

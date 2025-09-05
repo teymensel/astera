@@ -9,6 +9,7 @@ import 'providers/todos_provider.dart';
 import 'providers/virtual_pet_provider.dart';
 import 'providers/theme_provider.dart';
 import 'providers/notification_provider.dart';
+import 'providers/health_provider.dart';
 import 'services/notification_service.dart';
 import 'screens/splash_screen.dart';
 import 'screens/auth/login_screen.dart';
@@ -42,6 +43,7 @@ class AsteraApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => VirtualPetProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => NotificationProvider()),
+        ChangeNotifierProvider(create: (_) => HealthProvider()),
       ],
       child: Consumer2<AuthProvider, ThemeProvider>(
         builder: (context, authProvider, themeProvider, child) {

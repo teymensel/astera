@@ -12,6 +12,7 @@ import '../notes/notes_screen.dart';
 import '../todos/todos_screen.dart';
 import '../virtual_pet/virtual_pet_screen.dart';
 import '../settings/settings_screen.dart';
+import '../health/health_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const NotesTab(),
     const TodosTab(),
     const VirtualPetTab(),
+    const StatsTab(),
   ];
 
   @override
@@ -65,6 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.pets),
             label: 'Pet',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.health_and_safety),
+            label: 'Sağlık',
           ),
         ],
       ),
@@ -455,14 +461,7 @@ class StatsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('İstatistikler'),
-      ),
-      body: const Center(
-        child: Text('İstatistikler sayfası yakında...'),
-      ),
-    );
+    return const HealthScreen();
   }
 }
 
