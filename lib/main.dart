@@ -8,6 +8,8 @@ import 'providers/notes_provider.dart';
 import 'providers/todos_provider.dart';
 import 'providers/virtual_pet_provider.dart';
 import 'providers/theme_provider.dart';
+import 'providers/notification_provider.dart';
+import 'services/notification_service.dart';
 import 'screens/splash_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
@@ -16,7 +18,12 @@ import 'screens/couple/pairing_screen.dart';
 import 'utils/app_theme.dart';
 import 'utils/app_router.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Notification service'i başlat
+  await NotificationService().initialize();
+  
   runApp(const AsteraApp());
 }
 
@@ -34,6 +41,7 @@ class AsteraApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TodosProvider()),
         ChangeNotifierProvider(create: (_) => VirtualPetProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationProvider()),
       ],
       child: Consumer2<AuthProvider, ThemeProvider>(
         builder: (context, authProvider, themeProvider, child) {

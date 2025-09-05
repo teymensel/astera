@@ -82,4 +82,18 @@ class ThemeProvider extends ChangeNotifier {
         return 'Sistem Teması';
     }
   }
+
+  // Renk paleti değiştirme
+  Future<void> setColorPalette(String colorName) async {
+    // Burada renk paleti değiştirme logic'i eklenebilir
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('color_palette', colorName);
+    notifyListeners();
+  }
+
+  // Mevcut renk paletini al
+  Future<String> getColorPalette() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('color_palette') ?? 'pink';
+  }
 }

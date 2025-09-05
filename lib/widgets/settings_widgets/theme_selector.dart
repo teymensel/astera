@@ -177,41 +177,52 @@ class _ThemeSelectorState extends State<ThemeSelector> {
   }
 
   Widget _buildColorOption(String name, Color color, bool isSelected) {
-    return GestureDetector(
-      onTap: () {
-        // Renk değiştirme işlemi
-      },
-      child: Column(
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: isSelected ? Colors.black : Colors.grey[300]!,
-                width: isSelected ? 3 : 1,
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return GestureDetector(
+          onTap: () async {
+            // Renk değiştirme işlemi
+            await themeProvider.setColorPalette(name.toLowerCase());
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('$name renk paleti seçildi'),
+                backgroundColor: AppTheme.successColor,
               ),
-            ),
-            child: isSelected
-                ? const Icon(
-                    Icons.check,
-                    color: Colors.white,
-                    size: 20,
-                  )
-                : null,
+            );
+          },
+          child: Column(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: color,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: isSelected ? Colors.black : Colors.grey[300]!,
+                    width: isSelected ? 3 : 1,
+                  ),
+                ),
+                child: isSelected
+                    ? const Icon(
+                        Icons.check,
+                        color: Colors.white,
+                        size: 20,
+                      )
+                    : null,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                name,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            name,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
